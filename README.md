@@ -8,7 +8,7 @@
 
 ```console
 zyra@matrix:~$ whoami
-Blockchain engineer @ MigaLabs · Ethereum consensus, data & ZK
+Blockchain engineer @ MigaLabs · EVM, data & ZK
 
 zyra@matrix:~$ cat stats.log
 [+] 1,809 commits · ~3.5 commits/day since Feb 2025
