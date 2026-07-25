@@ -48,22 +48,16 @@ worm-privacy/*           x402-foundation/x402       Cerebellum-Network/*
 
 ### `> stats --render`
 
-<img height="170" src="https://github-readme-stats.vercel.app/api?username=Zyra-V21&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=000000&title_color=00ff41&text_color=00b32c&icon_color=00ff41&ring_color=00ff41"/>
-<img height="170" src="https://streak-stats.demolab.com?user=Zyra-V21&hide_border=true&background=000000&ring=00ff41&fire=c8ffdb&currStreakLabel=00ff41&sideLabels=00b32c&currStreakNum=00ff41&sideNums=00ff41&dates=008f11&stroke=003b00"/>
+<img height="180" src="https://streak-stats.demolab.com?user=Zyra-V21&hide_border=true&background=000000&ring=00ff41&fire=c8ffdb&currStreakLabel=00ff41&sideLabels=00b32c&currStreakNum=00ff41&sideNums=00ff41&dates=008f11&stroke=003b00"/>
 
-<img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zyra-V21&layout=compact&langs_count=10&hide=makefile,html&hide_border=true&bg_color=000000&title_color=00ff41&text_color=00b32c"/>
-
-<img src="https://github-profile-trophy.vercel.app/?username=Zyra-V21&theme=matrix&no-frame=true&row=1&column=7&margin-w=8"/>
+<!-- Generados por .github/workflows/metrics.yml (requiere secret METRICS_TOKEN) -->
+<img width="95%" src="assets/metrics-terminal.svg"/>
+<img width="95%" src="assets/metrics-habits.svg"/>
 
 <img width="95%" src="https://github-readme-activity-graph.vercel.app/graph?username=Zyra-V21&hide_border=true&bg_color=000000&color=00ff41&line=00ff41&point=c8ffdb&area=true&area_color=003b00&title_color=00ff41"/>
 
-<!-- Generado por .github/workflows/snake.yml (rama output). Aparece tras la primera ejecucion. -->
+<!-- Generado por .github/workflows/snake.yml (rama output) -->
 <img width="95%" src="https://raw.githubusercontent.com/Zyra-V21/Zyra-V21/output/github-snake-dark.svg"/>
-
-<!-- Opcional: metricas avanzadas (commits/dia, horas activas, lenguajes por commit).
-     Descomentar tras la primera ejecucion de .github/workflows/metrics.yml:
-<img width="95%" src="assets/metrics.svg"/>
--->
 
 <sub><code>there is no spoon, only code</code> · 🟢</sub>
 
