@@ -1,0 +1,27 @@
+name: metrics
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # PAT clasico con scopes repo + read:org, guardado como secret METRICS_TOKEN
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: Zyra-V21
+          template: classic
+          base: header
+          config_timezone: Europe/Madrid
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_limit: 8
+          plugin_habits: yes
+          plugin_habits_days: 30
+          plugin_habits_charts: yes
+          filename: assets/metrics.svg
