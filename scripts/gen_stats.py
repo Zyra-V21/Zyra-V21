@@ -6,7 +6,7 @@ Requiere GH_TOKEN en el entorno (PAT con scopes repo + read:org).
 import json
 import os
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 USER = "Zyra-V21"
 TOKEN = os.environ["GH_TOKEN"]
@@ -49,6 +49,24 @@ now = datetime.now(timezone.utc)
 days = max(1, (now - created).days)
 per_day = commits / days
 
+# contribuciones totales: la API limita contributionsCollection a rangos de 1 año
+contribs = 0
+start = created
+while start < now:
+    end = min(start + timedelta(days=365), now)
+    window_q = (
+        'query { viewer { contributionsCollection(from: "%s", to: "%s") '
+        "{ contributionCalendar { totalContributions } } } }"
+        % (start.strftime("%Y-%m-%dT%H:%M:%SZ"), end.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    )
+    contribs += api("https://api.github.com/graphql", {"query": window_q})["data"]["viewer"][
+        "contributionsCollection"]["contributionCalendar"]["totalContributions"]
+    start = end
+last_year = api(
+    "https://api.github.com/graphql",
+    {"query": "query { viewer { contributionsCollection { contributionCalendar { totalContributions } } } }"},
+)["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]["totalContributions"]
+
 langs_q = """query { user(login: "%s") {
   repositories(first: 100, ownerAffiliations: [OWNER], isFork: false) {
     nodes { languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -89,8 +107,11 @@ rows = [
         (COL2, [("[+] ", DARK), ("pull requests ", MID), (f"{prs}", BRIGHT), (f" · {merged} merged", MID)]),
     ],
     [
-        (PAD, [("[+] ", DARK), ("uptime ", MID), (f"{days}d", BRIGHT), (f" · since {created:%Y-%m-%d}", MID)]),
-        (COL2, [("[+] ", DARK), ("repos ", MID), (f"{user['public_repos']}", BRIGHT), (" · followers ", MID), (f"{user['followers']}", BRIGHT)]),
+        (PAD, [("[+] ", DARK), ("contributions ", MID), (f"{contribs:,}", BRIGHT), (f" · {last_year:,} last year", MID)]),
+        (COL2, [("[+] ", DARK), ("uptime ", MID), (f"{days}d", BRIGHT), (f" · since {created:%Y-%m-%d}", MID)]),
+    ],
+    [
+        (PAD, [("[+] ", DARK), ("repos ", MID), (f"{user['public_repos']}", BRIGHT), (" · followers ", MID), (f"{user['followers']}", BRIGHT)]),
     ],
     [],
     [(PAD, [("zyra@matrix", GREEN), (":~$ ", MID), ("langs --top", BRIGHT)])],
