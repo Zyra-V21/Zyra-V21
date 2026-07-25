@@ -71,7 +71,7 @@ def bar_line(name, size):
     pct = 100 * size / total
     filled = max(1, round(pct / max_pct * 14))
     return [
-        (f"{name[:9]:<10}", BRIGHT),
+        (f"{name[:10]:<11}", BRIGHT),
         ("█" * filled, GREEN),
         ("░" * (14 - filled), DIM),
         (f" {pct:4.1f}%", MID),
