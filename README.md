@@ -2,7 +2,7 @@
 
 <img src="assets/matrix-header.svg" alt="matrix rain" width="100%"/>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=18&pause=1200&color=00FF41&center=true&vCenter=true&width=650&lines=Ethereum+consensus+%7C+ZK+%7C+Rust;1%2C800%2B+commits+%C2%B7+~3.5+commits%2Fday;PRs+in+ethereum%2C+microsoft%2C+starknet-io..." alt="typing"/>
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=18&pause=1200&color=00FF41&center=true&vCenter=true&width=650&lines=EVM+%7C+ZK+%7C+Rust;1%2C800%2B+commits+%C2%B7+~3.5+commits%2Fday;PRs+in+ethereum%2C+microsoft%2C+starknet-io..." alt="typing"/>
 
 </div>
 
