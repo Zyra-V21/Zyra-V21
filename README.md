@@ -12,8 +12,6 @@
 <sub><code>&gt; merged PRs @</code></sub><br/>
 <a href="https://github.com/ethereum/beacon-APIs"><img src="https://img.shields.io/badge/ethereum-beacon--APIs-003b00?style=flat-square&logo=ethereum&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/microsoft/vega-prover"><img src="https://img.shields.io/badge/microsoft-vega--prover-003b00?style=flat-square&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/starknet-io/SNIPs"><img src="https://img.shields.io/badge/starknet--io-SNIPs-003b00?style=flat-square&logo=starknet&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/migalabs"><img src="https://img.shields.io/badge/migalabs-goteth·bindeth·eth--pokhar-003b00?style=flat-square&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/worm-privacy"><img src="https://img.shields.io/badge/worm--privacy-proof--of--burn-003b00?style=flat-square&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/x402-foundation/x402"><img src="https://img.shields.io/badge/x402-x402-003b00?style=flat-square&logoColor=00ff41&labelColor=000000"/></a> <a href="https://github.com/Cerebellum-Network"><img src="https://img.shields.io/badge/Cerebellum-cluster--apps-003b00?style=flat-square&logoColor=00ff41&labelColor=000000"/></a>
 
-<img height="150" src="https://streak-stats.demolab.com?user=Zyra-V21&hide_border=true&background=000000&ring=00ff41&fire=c8ffdb&currStreakLabel=00ff41&sideLabels=00b32c&currStreakNum=00ff41&sideNums=00ff41&dates=008f11&stroke=003b00"/>
-
 <!-- Generado por .github/workflows/snake.yml (rama output) -->
 <img width="100%" src="https://raw.githubusercontent.com/Zyra-V21/Zyra-V21/output/github-snake-dark.svg"/>
 

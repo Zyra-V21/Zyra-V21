@@ -49,23 +49,54 @@ now = datetime.now(timezone.utc)
 days = max(1, (now - created).days)
 per_day = commits / days
 
-# contribuciones totales: la API limita contributionsCollection a rangos de 1 año
-contribs = 0
+# calendario diario completo: la API limita contributionsCollection a rangos de 1 año
+days_map = {}
 start = created
 while start < now:
     end = min(start + timedelta(days=365), now)
     window_q = (
         'query { viewer { contributionsCollection(from: "%s", to: "%s") '
-        "{ contributionCalendar { totalContributions } } } }"
+        "{ contributionCalendar { weeks { contributionDays { date contributionCount } } } } } }"
         % (start.strftime("%Y-%m-%dT%H:%M:%SZ"), end.strftime("%Y-%m-%dT%H:%M:%SZ"))
     )
-    contribs += api("https://api.github.com/graphql", {"query": window_q})["data"]["viewer"][
-        "contributionsCollection"]["contributionCalendar"]["totalContributions"]
+    cal = api("https://api.github.com/graphql", {"query": window_q})["data"]["viewer"][
+        "contributionsCollection"]["contributionCalendar"]
+    for week in cal["weeks"]:
+        for d in week["contributionDays"]:
+            days_map[d["date"]] = d["contributionCount"]
     start = end
-last_year = api(
-    "https://api.github.com/graphql",
-    {"query": "query { viewer { contributionsCollection { contributionCalendar { totalContributions } } } }"},
-)["data"]["viewer"]["contributionsCollection"]["contributionCalendar"]["totalContributions"]
+
+day_list = sorted(days_map.items())
+contribs = sum(c for _, c in day_list)
+year_ago = (now - timedelta(days=365)).strftime("%Y-%m-%d")
+last_year = sum(c for d, c in day_list if d >= year_ago)
+
+# racha mas larga
+longest, run, longest_range, run_start = 0, 0, ("", ""), ""
+for date, c in day_list:
+    if c > 0:
+        if run == 0:
+            run_start = date
+        run += 1
+        if run > longest:
+            longest, longest_range = run, (run_start, date)
+    else:
+        run = 0
+
+# racha actual: hoy sin contribuciones aun no la rompe
+current, current_start = 0, ""
+for date, c in reversed(day_list):
+    if c > 0:
+        current += 1
+        current_start = date
+    elif date == day_list[-1][0]:
+        continue
+    else:
+        break
+
+
+def fmt_day(iso):
+    return datetime.fromisoformat(iso).strftime("%b %-d")
 
 langs_q = """query { user(login: "%s") {
   repositories(first: 100, ownerAffiliations: [OWNER], isFork: false) {
@@ -109,6 +140,10 @@ rows = [
     [
         (PAD, [("[+] ", DARK), ("contributions ", MID), (f"{contribs:,}", BRIGHT), (f" · {last_year:,} last year", MID)]),
         (COL2, [("[+] ", DARK), ("uptime ", MID), (f"{days}d", BRIGHT), (f" · since {created:%Y-%m-%d}", MID)]),
+    ],
+    [
+        (PAD, [("[+] ", DARK), ("streak ", MID), (f"{current}d", BRIGHT), (f" · {fmt_day(current_start)} → today" if current else "", MID)]),
+        (COL2, [("[+] ", DARK), ("longest ", MID), (f"{longest}d", BRIGHT), (f" · {fmt_day(longest_range[0])} → {fmt_day(longest_range[1])}", MID)]),
     ],
     [
         (PAD, [("[+] ", DARK), ("repos ", MID), (f"{user['public_repos']}", BRIGHT), (" · followers ", MID), (f"{user['followers']}", BRIGHT)]),
